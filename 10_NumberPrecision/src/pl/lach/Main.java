@@ -7,16 +7,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type an Integer");
-        int input = scanner.nextInt();
+        double input = scanner.nextInt();
         System.out.println(calculateOutput(input));
 
-
+        scanner.close();
     }
 
-    public static String calculateOutput(int input) {
+    public static String calculateOutput(double input) {
         StringBuilder stringBuilder = new StringBuilder();
         BigDecimal startValue = BigDecimal.valueOf(0, 1);
-        BigDecimal endValue = BigDecimal.valueOf((double) input);
+        BigDecimal endValue = BigDecimal.valueOf(input);
         BigDecimal incrementValue = BigDecimal.valueOf(0.1);
         if (input > 0) {
             do {
