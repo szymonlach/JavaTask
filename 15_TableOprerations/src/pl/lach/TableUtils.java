@@ -21,12 +21,41 @@ public class TableUtils {
         }
         return largestNumber;
     }
+
     public static int showSmallestNumberInTable(int[] table) {
         int smallestNumber = 0;
         for (int i = 0; i < table.length; i++) {
             smallestNumber = Math.min(smallestNumber, table[i]);
         }
         return smallestNumber;
+    }
+
+    public static int[] showRowInTableWithTheLargestSumOfElements(int[][] table) {
+        int numberOfRowWithLargestSumOfElements = 0;
+        int currentBiggestSumOfRow = 0;
+        for (int i = 0; i < table.length; i++) {
+            if (currentBiggestSumOfRow < sumTableRow(table[i])) {
+                currentBiggestSumOfRow = sumTableRow(table[i]);
+                numberOfRowWithLargestSumOfElements = i;
+            }
+        }
+        return table[numberOfRowWithLargestSumOfElements];
+    }
+
+    public static String drawTable(int[] table) {
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (int i = 0; i < table.length; i++) {
+            stringBuilder.append(table[i] + ",");
+        }
+        return stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length()).append("]").toString();
+    }
+
+    private static int sumTableRow(int[] tableRow) {
+        int sum = 0;
+        for (int i = 0; i < tableRow.length; i++) {
+            sum += tableRow[i];
+        }
+        return sum;
     }
 
 

@@ -41,6 +41,13 @@ public class Main {
         System.out.println(TableUtils.showLargestNumberInTable(testNumberTable3));
         System.out.println(TableUtils.showSmallestNumberInTable(testNumberTable3));
 
-
+        //Solution for 5.
+        int[][] testNumberTable4 = new int[][]{
+                new int[]{1, 2, 3},
+                new int[]{7, 8, 9},
+                new int[]{4, 5, 6}
+        };
+        int[] outputTable = TableUtils.showRowInTableWithTheLargestSumOfElements(testNumberTable4);
+        System.out.println(TableUtils.drawTable(outputTable));
     }
 }
