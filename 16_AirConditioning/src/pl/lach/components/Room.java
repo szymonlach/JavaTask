@@ -20,13 +20,36 @@ public class Room {
         this.airConditionerIsRuning = false;
     }
 
-    public void runAirConditioner(BigDecimal desiredTemperature) {
-        airConditionerIsRuning = true;
-        while (airConditionerIsRuning) {
-            actualTemperature = airConditioner.start(roomVolume, actualTemperature);
-            System.out.println("The temperature in room " + roomName + " is " + actualTemperature.toString());
-            if (actualTemperature.equals(desiredTemperature)) airConditionerIsRuning = false;
+    public String runAirConditioner(BigDecimal desiredTemperature) {
+        if (airConditionerIsRuning) {
+            if (actualTemperature.compareTo(desiredTemperature) > 0) {
+                actualTemperature = airConditioner.start(roomVolume, actualTemperature);
+            }
         }
+        return roomName + " temperature: " + actualTemperature + "   ";
+    }
 
+    public void setAirConditionerIsRuning(boolean airConditionerIsRuning) {
+        this.airConditionerIsRuning = airConditionerIsRuning;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public BigDecimal getRoomVolume() {
+        return roomVolume;
+    }
+
+    public BigDecimal getActualTemperature() {
+        return actualTemperature;
+    }
+
+    public GeneralAirConditioner getAirConditioner() {
+        return airConditioner;
+    }
+
+    public boolean isAirConditionerIsRuning() {
+        return airConditionerIsRuning;
     }
 }

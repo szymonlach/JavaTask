@@ -1,9 +1,14 @@
 package pl.lach;
 
+import pl.lach.components.Building;
 import pl.lach.components.Room;
 import pl.lach.components.air_conditioning.BasicAirConditioner;
+import pl.lach.components.air_conditioning.GeneralAirConditioner;
+import pl.lach.components.air_conditioning.ProAirConditioner;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Write a program that will simulate temperature control in the premises of a building.
@@ -19,12 +24,39 @@ import java.math.BigDecimal;
  * The program should display the temperature in each of the four rooms every second. Every second, the room temperature should be lowered by the appropriate value depending on the air conditioner used. Set up any starting temperature. After lowering the temperature to the set temperature, it should be kept constant.
  */
 public class Main {
-    public static void main(String[] args) {
 
+    private static final BigDecimal TEMPERATURE_30 = BigDecimal.valueOf(30).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private static final BigDecimal TEMPERATURE_25 = BigDecimal.valueOf(25).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private static final BigDecimal TEMPERATURE_20 = BigDecimal.valueOf(20).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private static final BigDecimal TEMPERATURE_15 = BigDecimal.valueOf(15).setScale(2, BigDecimal.ROUND_HALF_DOWN);
 
-        BasicAirConditioner basicAirConditioner = new BasicAirConditioner();
-        Room room = new Room("Room1", BigDecimal.valueOf(10).setScale(2,BigDecimal.ROUND_HALF_DOWN), BigDecimal.valueOf(20).setScale(2,BigDecimal.ROUND_HALF_DOWN), basicAirConditioner);
-        room.runAirConditioner(BigDecimal.valueOf(19).setScale(2,BigDecimal.ROUND_HALF_DOWN));
+    private static final BigDecimal VOLUME_20 = BigDecimal.valueOf(2).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private static final BigDecimal VOLUME_10 = BigDecimal.valueOf(2).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private static final BigDecimal VOLUME_5 = BigDecimal.valueOf(2).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+
+    public static void main(String[] args) throws InterruptedException {
+
+        GeneralAirConditioner basicAirConditioner = new BasicAirConditioner();
+        GeneralAirConditioner proAirConditioner = new ProAirConditioner();
+
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("Room-1", VOLUME_20, TEMPERATURE_30, basicAirConditioner));
+        rooms.add(new Room("Room-2", VOLUME_10, TEMPERATURE_25, basicAirConditioner));
+        rooms.add(new Room("Room-3", VOLUME_10, TEMPERATURE_25, proAirConditioner));
+        rooms.add(new Room("Room-4", VOLUME_5, TEMPERATURE_20, basicAirConditioner));
+
+        Building building = new Building(rooms);
+
+        rooms.forEach(n -> n.setAirConditionerIsRuning(true));
+
+        while (true) {
+            StringBuilder finalStringBuilder = new StringBuilder();
+            rooms.forEach(n -> finalStringBuilder.append(n.runAirConditioner(TEMPERATURE_15)));
+            System.out.println(finalStringBuilder.toString());
+
+            Thread.sleep(1000);
+        }
+
 
     }
 }
