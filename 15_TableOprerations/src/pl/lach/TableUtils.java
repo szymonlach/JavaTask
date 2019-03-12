@@ -15,7 +15,7 @@ public class TableUtils {
     }
 
     public static int showLargestNumberInTable(int[] table) {
-        int largestNumber = 0;
+        int largestNumber = table[0];
         for (int i = 0; i < table.length; i++) {
             largestNumber = Math.max(largestNumber, table[i]);
         }
@@ -23,7 +23,7 @@ public class TableUtils {
     }
 
     public static int showSmallestNumberInTable(int[] table) {
-        int smallestNumber = 0;
+        int smallestNumber = table[0];
         for (int i = 0; i < table.length; i++) {
             smallestNumber = Math.min(smallestNumber, table[i]);
         }
