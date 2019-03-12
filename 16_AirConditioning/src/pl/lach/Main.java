@@ -1,5 +1,10 @@
 package pl.lach;
 
+import pl.lach.components.Room;
+import pl.lach.components.air_conditioning.BasicAirConditioner;
+
+import java.math.BigDecimal;
+
 /**
  * Write a program that will simulate temperature control in the premises of a building.
  * <p>
@@ -15,6 +20,11 @@ package pl.lach;
  */
 public class Main {
     public static void main(String[] args) {
-        
+
+
+        BasicAirConditioner basicAirConditioner = new BasicAirConditioner();
+        Room room = new Room("Room1", BigDecimal.valueOf(10).setScale(2,BigDecimal.ROUND_HALF_DOWN), BigDecimal.valueOf(20).setScale(2,BigDecimal.ROUND_HALF_DOWN), basicAirConditioner);
+        room.runAirConditioner(BigDecimal.valueOf(19).setScale(2,BigDecimal.ROUND_HALF_DOWN));
+
     }
 }
