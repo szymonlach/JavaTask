@@ -13,7 +13,7 @@ public class GameMachine {
         this.games = games;
     }
 
-    public Game buyGame(String gameName, int payedMoney) throws GameNotFoundException, NotEnoughtMoneyException {
+    public Game buyGame(String gameName, int payedMoney){
         Game selectedGame = null;
         for (Game game : games) {
             if (game.getName().equals(gameName)) {

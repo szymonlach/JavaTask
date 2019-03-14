@@ -6,7 +6,6 @@ import pl.lach.game.GameMachineController;
 import pl.lach.my_exception.GameNotFoundException;
 import pl.lach.my_exception.NotEnoughtMoneyException;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +36,7 @@ public class Main {
         GameMachine gameMachine = new GameMachine(games);
         GameMachineController gameMachineController = new GameMachineController(gameMachine);
         try {
-            gameMachineController.startBuingGame();
+            gameMachineController.startBuyingGame();
         } catch (NotEnoughtMoneyException | GameNotFoundException e) {
             System.err.println(e.getMessage());
         }

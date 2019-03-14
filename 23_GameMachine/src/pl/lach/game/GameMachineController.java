@@ -1,8 +1,5 @@
 package pl.lach.game;
 
-import pl.lach.my_exception.GameNotFoundException;
-import pl.lach.my_exception.NotEnoughtMoneyException;
-
 import java.util.Scanner;
 
 public class GameMachineController {
@@ -14,7 +11,7 @@ public class GameMachineController {
     }
 
 
-    public void startBuingGame() throws NotEnoughtMoneyException, GameNotFoundException {
+    public void startBuyingGame() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter game name");
         String inputGameTitle = scanner.nextLine();
